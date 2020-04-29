@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Moving Elements</title>
+</head>
+<script type="text/javascript">
+function oneTo2(){
+	l1 = document.querySelector("#list1");
+	l2 = document.querySelector("#list2");
+	for(i = 0;i<l1.length;i++)
+		if(l1.options[i].selected  == true){
+				l2.setAttribute("size",l2.length+1)
+				var newEl = document.createElement("option");
+				//newEl.innnerHTML = l1.options[i].innerHTML;
+				newEl.value = l1.options[i].value;
+				l2.options[l2.length] = newEl;
+				l2.options[l2.length-1].innerHTML = newEl.value;
+				l1.options[i].remove();
+				l1.setAttribute("size",l1.length)
+				
+		}
+}
+function twoTo1(){
+	l1 = document.querySelector("#list1");
+	l2 = document.querySelector("#list2");
+	for(i = 0;i<l2.length;i++)
+		if(l2.options[i].selected  == true){
+				l1.setAttribute("size",l1.length+1)				
+				var newEl = document.createElement("option");
+				newEl.value = l2.options[i].value;
+				l1.options[l1.length] = newEl;
+				l1.options[l1.length-1].innerHTML = newEl.value;
+				l2.options[i].remove();
+				l2.setAttribute("size",l2.length)
+		}
+}
+</script>
+<style type="text/css">
+</style>
+<body>
+	<br><br><br>
+	<div margin-top = "30%" align = "center">
+	<label>Choose the element you want to move:  </label>
+	<select id = "list1" ondblclick = "oneTo2()" size ="4" style="position: fixed">
+		<option>Audi A5</option>
+		<option>BMW M2</option>
+		<option>Cadillac CT-5</option>
+		<option>Kia Cadenza</option>
+	</select>
+	<label style="padding-left: 150px">Choose the element you want to move:  </label>
+	<select id = "list2" ondblclick="twoTo1()" size= "4" style="position: fixed">
+		<option>Chevrolet Impala</option>
+		<option>Shelby Mustang</option>
+		<option>Pontiac GTO</option>
+		<option>Dodge Charger</option>
+	</select></div>
+</body>
+</html>
